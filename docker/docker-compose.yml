@@ -1,0 +1,38 @@
+version: '3.5'
+
+services:
+
+### Apache Server ########################################
+
+  web:
+    image: usermanagement
+    container_name: usermanagement
+    volumes:
+      - ../user-management:/var/www
+      - ./logs/apache2:/var/log/apache2
+    ports:
+      - 8080:80
+    restart: always
+    tty: true
+
+
+### MySQL ################################################
+  mysql:
+    image: mysql:5.7
+    container_name: usermanagement-mysql
+    environment:
+      - MYSQL_DATABASE=usermanagement
+      - MYSQL_USER=development
+      - MYSQL_PASSWORD=password
+      - MYSQL_ROOT_PASSWORD=password
+    volumes:
+      - ./mysql/docker-data-path-host/mysql:/var/lib/mysql
+      - ./mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    ports:
+      - 3306:3306
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8081:8080
