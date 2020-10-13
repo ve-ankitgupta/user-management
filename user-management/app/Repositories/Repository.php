@@ -14,4 +14,12 @@ class Repository {
     public function paginate (int $paginate) {
         return $this->model->paginate ($paginate);
     }
+
+    public function create(array $data) {
+        return $this->model->create($data);
+    }
+
+    public function delete(int $id):bool {
+        return $this->model->find($id)->delete();
+    }
 }

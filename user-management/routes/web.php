@@ -25,7 +25,10 @@ Route::group([], function($route) {
 
         // check routes by admin role
         $route->middleware(['role:admin'])->group(function() use ($route) {
-            $route->get('users', 'UserController@list');
+            $route->get('users', 'UserController@list')->name('userlist');
+            $route->get('users/register', 'UserController@create')->name('registeruser');
+            $route->post('users/register', 'UserController@store')->name('registeruser');
+            $route->delete('users/{id}', 'UserController@delete')->name('deleteuser');
         });
     });
 });
