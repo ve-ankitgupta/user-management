@@ -59,7 +59,8 @@
                             <div class="col-md-6">
                                 <select id="role" name="role" class="form-control @error('role') is-invalid @enderror">
                                     <option value="">Select a Role</option>
-
+                                    <option value="student">Student</option>
+                                    <option value="teacher">Teacher</option>
                                 </select>
 
                                 @error('role')

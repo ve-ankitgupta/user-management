@@ -15,9 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes(['register' => Helper::allowRegistration()]);
+Auth::routes([
+    'register' => Helper::allowRegistration(),
+    'reset' => false
+]);
 
-// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group([], function($route) {
     // check route for authentication
@@ -25,6 +28,8 @@ Route::group([], function($route) {
 
         // check routes by admin role
         $route->middleware(['role:admin'])->group(function() use ($route) {
+
+            // user registered routes
             $route->get('users', 'UserController@list')->name('userlist');
             $route->get('users/register', 'UserController@create')->name('registeruser');
             $route->post('users/register', 'UserController@store')->name('registeruser');

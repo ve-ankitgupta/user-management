@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -29,6 +30,14 @@ class LoginController extends Controller
     protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
+     * set constants
+     * 
+     * @var string
+     */
+    const ADMIN_ROLE_NAME = 'admin';
+    const ADMIN_REDIRECT = 'users';
+
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -36,5 +45,20 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+     /**
+     * The user has been authenticated.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
+     */
+    protected function authenticated(Request $request, $user)
+    {
+        // check if user is admin
+        if ($user->role === self::ADMIN_ROLE_NAME)
+            // redirect him to users
+            $this->redirectTo = self::ADMIN_REDIRECT;
     }
 }
