@@ -57,11 +57,9 @@ Step-6) redirect to docker folder
 ```cd ../docker```
 
 Step-7) Run docker-compose
-
 ```docker-compose up -d```
 
-Step-8) goto usermanagement container and run migrate<b/>
-
+Step-8) goto usermanagement container and run migrate
 ```docker ps```
 
 Search for usermanagement container-id
@@ -69,7 +67,6 @@ Search for usermanagement container-id
 ```docker exec -it [USERMANAGEMENT CONTAINER ID] /bin/bash```
 
 Step-9) run migrateions
-
 ```
 php artisan migrate
 php artisan db:seed --class=AdminSeeder
