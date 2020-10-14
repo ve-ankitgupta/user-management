@@ -53,10 +53,10 @@ Step-6) redirect to docker folder
 Step-7) Run docker-compose
 ```docker-compose up -d```
 
-Step-8) goto usermanagement container and run migrate
+Step-8) goto usermanagement container and run migrate<b/>
 ```docker ps```
-Search for usermanagement container-id
-docker exec -it [USERMANAGEMENT CONTAINER ID] /bin/bash
+Search for usermanagement container-id<b/>
+```docker exec -it [USERMANAGEMENT CONTAINER ID] /bin/bash```
 
 Step-9) run migrateions
 php artisan migrate
