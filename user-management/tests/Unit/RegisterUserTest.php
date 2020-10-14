@@ -15,9 +15,9 @@ class RegisterUserTest extends TestCase
      * @var Illuminate\Foundation\Testing\WithFaker
      * @var Illuminate\Foundation\Testing\RefreshDatabase;
      */
-    use WithFaker, RefreshDatabase;
+    // use WithFaker, RefreshDatabase;
 
-    protected $admin;
+    // protected $admin;
 
     // public function setUp():void {
     //     $this->faker = new Faker;
@@ -36,7 +36,6 @@ class RegisterUserTest extends TestCase
     // }
 
     // public function testRegisterUserSuccess() {
-    //     dd(get_class_methods($this->faker));
     //     $this->actingAs($this->admin)->post('/users/register', [
     //         'name' => $this->faker->name,
     //         'email' => $faker->unique()->safeEmail,
