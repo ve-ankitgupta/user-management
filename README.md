@@ -1,7 +1,29 @@
-# user-management
-Following are the steps you should follow to run the setup
+#User Management
+<ul>
+  <li>After login of the Superadmin:</li>
+  <li>Superadmin login</li>
+  <ul>
+    <li>Username/Email: test@email.com</li>
+    <li>Password: password</li>
+  </ul>
+  <li>Superadmin will be redirected to "Users" page</li>
+  <ul>
+    <li>On this page, all other users will be listed</li>
+    <li>Create a new user</li>
+    <li>Edit User</li>
+    <li>Delete User</li>
+  </ul>  
+  <li>Newly created users can login</li>
+</ul>
+-----------------------------------------------------------------------------------------
 
-Step-1) Download the "docker" and "docker-compose" in your operating system.
+We are also adding test cases. Test cases will be shared by Tomorrow morning.
+
+-----------------------------------------------------------------------------------------
+
+Following are the steps you can follow to run the setup
+
+Step-1) Download "docker" and "docker-compose" in your operating system.
 
 Step-2) Clone the project from github repository
 https://github.com/ve-ankitgupta/user-management.git
@@ -16,14 +38,12 @@ Step-5) goto user-management folder and set environment variables value
 cd user-management
 nano .env
 
-```
-DB_CONNECTION=mysql         [SET VARIABLES] 
+DB_CONNECTION=mysql         [SET VARIABLES]
 DB_HOST=mysql
 DB_PORT=3306
 DB_DATABASE=usermanagement
 DB_USERNAME=development
-DB_PASSWORD=password 
-```
+DB_PASSWORD=password
 
 Step-6) redirect to docker folder
 cd ../docker
@@ -33,12 +53,11 @@ docker-compose up -d
 
 Step-7) goto usermanagement container and run migrate
 docker ps
-```Search for usermanagement container-id```
+Search for usermanagement container-id
 docker exec -it [USERMANAGEMENT CONTAINER ID] /bin/bash
 
 Step-8) run migrateions
 php artisan migrate
-php artisan db:seed --class=AdminSeeder
 
 Step-9) open browser and goto the URL
 http://localhost:8080
