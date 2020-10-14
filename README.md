@@ -26,6 +26,7 @@ Following are the steps you can follow to run the setup
 Step-1) Download "docker" and "docker-compose" in your operating system.
 
 Step-2) Clone the project from github repository
+
 ```git clone https://github.com/ve-ankitgupta/user-management.git```
 
 Step-3) move to "user-management" folder
