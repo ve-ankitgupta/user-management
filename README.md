@@ -30,37 +30,50 @@ Step-2) Clone the project from github repository
 ```git clone https://github.com/ve-ankitgupta/user-management.git```
 
 Step-3) move to "user-management" folder
+
 ```cd user-management```
 
 Step-4) Run the below command
+
 ```sh setup.sh```
 
 Step-5) goto user-management folder and set environment variables value
+
 ```
 cd user-management
 nano .env
 ```
-
+<pre>
 DB_CONNECTION=mysql         [SET VARIABLES]
 DB_HOST=mysql
 DB_PORT=3306
 DB_DATABASE=usermanagement
 DB_USERNAME=development
 DB_PASSWORD=password
+</pre>
 
 Step-6) redirect to docker folder
+
 ```cd ../docker```
 
 Step-7) Run docker-compose
+
 ```docker-compose up -d```
 
 Step-8) goto usermanagement container and run migrate<b/>
+
 ```docker ps```
-Search for usermanagement container-id<b/>
+
+Search for usermanagement container-id
+
 ```docker exec -it [USERMANAGEMENT CONTAINER ID] /bin/bash```
 
 Step-9) run migrateions
+
+```
 php artisan migrate
+php artisan db:seed --class=AdminSeeder
+```
 
 Step-10) open browser and goto the URL
 http://localhost:8080
