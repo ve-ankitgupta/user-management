@@ -2,12 +2,12 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+// use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\User;
-// use Faker\Generator as Faker;
 
 class RegisterUserTest extends TestCase
 {
@@ -15,33 +15,44 @@ class RegisterUserTest extends TestCase
      * @var Illuminate\Foundation\Testing\WithFaker
      * @var Illuminate\Foundation\Testing\RefreshDatabase;
      */
-    // use WithFaker, RefreshDatabase;
+    use WithFaker, RefreshDatabase;
 
-    // protected $admin;
+    /**
+     * Admin user
+     * 
+     * @var App\User
+     */
+    private $admin;
 
-    // public function setUp():void {
-    //     $this->faker = new Faker;
-    //     parent::setUp();
-    //     $this->addAdmin();
-    // }
+    public function setUp():void {
+        parent::setUp();
+        $this->admin = $this->addUser('admin', true);
+    }
 
-    // private function addAdmin() {
-    //     $this->admin = User::create([
-    //         'name' => $this->faker->name,
-    //         'email' => $faker->unique()->safeEmail,
-    //         'password' => $this->faker->password,
-    //         'role' => 'admin',
-    //         'status' => true
-    //     ]);
-    // }
+    private function addUser(string $role = null, bool $status = false):User {
+        return User::create($this->getUserParam($role, $status));
+    }
 
-    // public function testRegisterUserSuccess() {
-    //     $this->actingAs($this->admin)->post('/users/register', [
-    //         'name' => $this->faker->name,
-    //         'email' => $faker->unique()->safeEmail,
-    //         'password' => $this->faker->password,
-    //         'role' => $this->faker->userName,
-    //         'status' => $this->faker->boolean
-    //     ])->assertRedirect('/users');
-    // }
+    private function getUserParam(string $role, bool $status):Array {
+        return [
+            'name' => $this->faker->name,
+            'email' => $this->faker->unique()->safeEmail,
+            'password' => $this->faker->password,
+            'role' => $role,
+            'status' => $status
+        ];
+    }
+
+    public function testWithoutAuth() {
+        $this->get('/users')->assertStatus(302);
+    }
+
+    public function testWithAdminSuccess() {
+        $this->actingAs($this->admin)->get('/users')->assertStatus(200);
+    }
+
+    public function testRegisterUserAsAdmin() {
+        $params = $this->getUserParam($this->faker->jobTitle, $this->faker->boolean);
+        $this->actingAs($this->admin)->post('/users/register', $params)->assertStatus(302);
+    }
 }
