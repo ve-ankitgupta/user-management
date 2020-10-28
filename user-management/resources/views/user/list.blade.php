@@ -34,7 +34,14 @@
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->email }}</td>
                                 <td>{{ $item->role }}</td>
-                                <td>{{ $item->status ? 'active' : 'inactive' }}</td>
+                                <td>
+                                    <form method="POST" class="switchToggle" action="{{ route('changeuserloginstatus', ['id' => $item->id]) }}">
+                                        @csrf
+                                        @method('PUT')
+                                        <input type="checkbox" id="`switch_{{ $item->id }}`" {{ $item->status ? 'checked' : ''}} onChange="this.closest('form').submit()">
+                                        <label for="`switch_{{ $item->id }}`">Toggle</label>
+                                    </form>
+                                </td>
                                 <td>{{ $item->created_at->format('F d, Y') }}</td>
                                 <td>
                                     <span class="btn btn-sm btn-danger text-capitalize" data-toggle="modal" data-target="#staticBackdrop" onClick="setDeleteUser({{$item->id}}, '{{$item->name}}')">delete</span>

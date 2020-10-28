@@ -34,6 +34,7 @@ Route::group([], function($route) {
             $route->get('users/register', 'UserController@create')->name('registeruser');
             $route->post('users/register', 'UserController@store')->name('registeruser');
             $route->delete('users/{id}', 'UserController@delete')->name('deleteuser');
+            $route->put('users/{id}/status', 'UserController@toggleStatus')->name('changeuserloginstatus');
         });
     });
 });

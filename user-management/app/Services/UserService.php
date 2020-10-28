@@ -30,4 +30,8 @@ class UserService {
     public function delete(Request $request):bool {
         return $this->repository->delete((int) $request->route('id'));
     }
+
+    public function toggleStatus(Request $request):bool {
+        return $this->repository->toggleStatus((int) $request->route('id'));
+    }
 }

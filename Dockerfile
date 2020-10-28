@@ -1,5 +1,5 @@
-# Select the base Ubuntu 18.04 image from the Docker Hub Store
-FROM ubuntu:18.04
+# Select the base Ubuntu 20.04 image from the Docker Hub Store
+FROM ubuntu:20.04
 
 # Set the timezone, this stops PHP libs from attempting to prompt us while setting up the Docker build
 ENV TZ=Asia/Kolkata

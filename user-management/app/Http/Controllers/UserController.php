@@ -33,4 +33,17 @@ class UserController extends Controller
         $this->service->delete($request);
         return $redirector->route('userlist');
     }
+    
+    /**
+     * method to change status of the user
+     * 
+     * @param Illuminate\Http\Request
+     * @param Illuminate\Routing\Redirector
+     * 
+     * @return Illuminate\Routing\Redirector
+     */
+    public function toggleStatus(Request $request, Redirector $redirector) {
+        $this->service->toggleStatus($request);
+        return $redirector->route('userlist');
+    }
 }

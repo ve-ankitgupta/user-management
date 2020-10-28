@@ -6,4 +6,5 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 interface IUser  {
     public function paginate (int $limit):LengthAwarePaginator;
+    public function toggleStatus(int $id):bool;
 }
